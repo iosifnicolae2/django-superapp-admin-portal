@@ -27,6 +27,35 @@ def extend_superapp_settings(main_settings):
         "SITE_SYMBOL": "settings",
         "SHOW_HISTORY": False,
         "STYLES": [],
+        "SITE_LOGO": {
+            # "light": lambda request: static("images/logo-light.svg"),  # light mode
+            # "dark": lambda request: static("images/logo-dark.svg"),  # dark mode
+        },
+        "COLORS": {
+            "primary": {
+                '50': '#eef2ff',
+                '100': '#e0e7ff',
+                '200': '#c7d2fe',
+                '300': '#a5b4fc',
+                '400': '#818cf8',
+                '500': '#6366f1',
+                '600': '#4f46e5',
+                '700': '#4338ca',
+                '800': '#3730a3',
+                '900': '#312e81',
+                '950': '#1e1b4b',
+            },
+        },
+        "LOGIN": {
+            # "image": lambda request: static("images/login-bg.jpg"),
+        },        
+        "SIDEBAR": {
+            "show_search": False,
+            "show_all_applications": True,
+            "navigation": [
+
+            ]
+        },
         "SCRIPTS": [
             lambda request: static("js/apex.min.js"),
             lambda request: static("js/flowbite.min.js"),

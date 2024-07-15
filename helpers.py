@@ -19,8 +19,8 @@ from django.db import models
 
 from admin_confirm import AdminConfirmMixin
 
-from django_superapp.db_fields import ChainedForeignKey
-from django_superapp.widgets import ChainedAdminSelect
+from .db_fields import ChainedForeignKey
+from .widgets import ChainedAdminSelect
 
 
 class SuperAppAdminReadonlyField(UnfoldAdminReadonlyField):

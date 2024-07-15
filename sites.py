@@ -7,7 +7,7 @@ from unfold.sites import UnfoldAdminSite
 
 from .forms import LoginForm
 
-from .urls import main_admin_urlpatterns
+from django_superapp.urls import main_admin_urlpatterns
 
 
 class SuperAppAdminSite(UnfoldAdminSite):

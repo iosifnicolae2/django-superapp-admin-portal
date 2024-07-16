@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "tailwind:build": "tailwindcss -i ./styles.css -o ../../static/css/styles.css --minify",
-    "tailwind:watch": "tailwindcss -i ./styles.css -o ../../static/css/styles.css --minify --watch --minify"
+    "tailwind:build": "tailwindcss -i ./styles.css -o ../../../static/css/styles.css --minify",
+    "tailwind:watch": "tailwindcss -i ./styles.css -o ../../../static/css/styles.css --minify --watch --minify"
   },
   "dependencies": {
     "flowbite": "^2.3.0",

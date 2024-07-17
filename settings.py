@@ -2,6 +2,7 @@ from django.urls import reverse_lazy
 from django.templatetags.static import static
 from django.utils.translation import gettext_lazy as _
 
+
 def extend_superapp_settings(main_settings):
     main_settings['INSTALLED_APPS'] = [
         'admin_confirm',
@@ -22,11 +23,12 @@ def extend_superapp_settings(main_settings):
     })
 
     main_settings['UNFOLD'] = {
-        "SITE_HEADER": _("SuperApp Demo"),
-        "SITE_TITLE": _("SuperApp Demo"),
+        "SITE_HEADER": _("SuperApp"),
+        "SITE_TITLE": _("SuperApp"),
         "SITE_SYMBOL": "settings",
         "SHOW_HISTORY": False,
         "STYLES": [],
+        "TABS": [],
         "SITE_LOGO": {
             # "light": lambda request: static("images/logo-light.svg"),  # light mode
             # "dark": lambda request: static("images/logo-dark.svg"),  # dark mode

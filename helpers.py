@@ -109,7 +109,7 @@ class SuperAppModelAdmin(AdminConfirmMixin, ModelAdmin, ImportExportModelAdmin):
 
         actions = []
         if object_id:
-            for action in self.get_actions_detail(request):
+            for action in self.get_actions_detail(request, object_id=int(object_id)):
                 actions.append(
                     {
                         "title": action.description,
@@ -132,7 +132,7 @@ class SuperAppModelAdmin(AdminConfirmMixin, ModelAdmin, ImportExportModelAdmin):
 
         extra_context.update(
             {
-                "actions_submit_line": self.get_actions_submit_line(request),
+                "actions_submit_line": self.get_actions_submit_line(request, object_id=int(object_id)),
                 "actions_detail": actions,
             }
         )

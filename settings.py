@@ -13,6 +13,7 @@ def extend_superapp_settings(main_settings):
         "unfold.contrib.simple_history",
         "unfold.contrib.forms",
         'superapp.apps.admin_portal',
+        'django_svelte_jsoneditor',
     ] + main_settings['INSTALLED_APPS'] + [
         "debug_toolbar",
         "import_export",

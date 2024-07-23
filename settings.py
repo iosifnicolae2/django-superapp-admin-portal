@@ -4,6 +4,9 @@ from django.utils.translation import gettext_lazy as _
 
 
 def extend_superapp_settings(main_settings):
+    main_settings['STATICFILES_DIRS'] += [
+        main_settings['BASE_DIR'] / "superapp" / "apps" / "admin_portal" / "static",
+    ]
     main_settings['INSTALLED_APPS'] = [
         'admin_confirm',
         'unfold',

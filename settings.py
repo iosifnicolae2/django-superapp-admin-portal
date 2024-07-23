@@ -63,9 +63,9 @@ def extend_superapp_settings(main_settings):
             ]
         },
         "SCRIPTS": [
-            lambda request: static("js/apex.min.js"),
-            lambda request: static("js/flowbite.min.js"),
-            lambda request: static("js/jquery-3.7.1.min.js"),
-            lambda request: static("js/modals.js"),
+            lambda request: static("admin_portal/js/apex.min.js"),
+            lambda request: static("admin_portal/js/flowbite.min.js"),
+            lambda request: static("admin_portal/js/jquery-3.7.1.min.js"),
+            lambda request: static("admin_portal/js/modals.js"),
         ],
     }

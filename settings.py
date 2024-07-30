@@ -7,6 +7,9 @@ def extend_superapp_settings(main_settings):
     main_settings['STATICFILES_DIRS'] += [
         main_settings['BASE_DIR'] / "superapp" / "apps" / "admin_portal" / "static",
     ]
+    main_settings['TEMPLATES'][0]['DIRS'] += [
+        main_settings['BASE_DIR'] / "superapp" / "apps" / "admin_portal" / "templates",
+    ]
     main_settings['INSTALLED_APPS'] = [
         'admin_confirm',
         'unfold',
@@ -63,6 +66,7 @@ def extend_superapp_settings(main_settings):
         },
         "STYLES": [
             lambda request: static("admin_portal/css/styles.css"),
+            lambda request: static("admin_portal/css/custom.css"),
         ],
         "SCRIPTS": [
             lambda request: static("admin_portal/js/apex.min.js"),

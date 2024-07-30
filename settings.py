@@ -31,7 +31,6 @@ def extend_superapp_settings(main_settings):
         "SITE_TITLE": _("SuperApp"),
         "SITE_SYMBOL": "settings",
         "SHOW_HISTORY": False,
-        "STYLES": [],
         "TABS": [],
         "SITE_LOGO": {
             # "light": lambda request: static("images/logo-light.svg"),  # light mode
@@ -62,6 +61,9 @@ def extend_superapp_settings(main_settings):
 
             ]
         },
+        "STYLES": [
+            lambda request: static("admin_portal/css/styles.css"),
+        ],
         "SCRIPTS": [
             lambda request: static("admin_portal/js/apex.min.js"),
             lambda request: static("admin_portal/js/flowbite.min.js"),

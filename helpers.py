@@ -132,7 +132,7 @@ class SuperAppModelAdmin(AdminConfirmMixin, ModelAdmin, ImportExportModelAdmin):
 
         extra_context.update(
             {
-                "actions_submit_line": self.get_actions_submit_line(request, object_id=int(object_id)),
+                "actions_submit_line": self.get_actions_submit_line(request, object_id=int(object_id) if object_id is not None else None),
                 "actions_detail": actions,
             }
         )

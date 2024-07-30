@@ -5,25 +5,30 @@ const dismissModal = (modalName) => {
 }
 
 // Patch the dismiss functions to remove the iframe when the modal is closed
-const originalDismissChangeRelatedObjectPopup = dismissChangeRelatedObjectPopup;
-const originalDismissDeleteRelatedObjectPopup = dismissDeleteRelatedObjectPopup;
-const originalDismissAddRelatedObjectPopup = dismissAddRelatedObjectPopup;
+const originalDismissChangeRelatedObjectPopup = typeof dismissChangeRelatedObjectPopup !== 'undefined'? dismissChangeRelatedObjectPopup: undefined;
+const originalDismissDeleteRelatedObjectPopup = typeof dismissDeleteRelatedObjectPopup !== 'undefined'? dismissDeleteRelatedObjectPopup: undefined;
+const originalDismissAddRelatedObjectPopup = typeof dismissAddRelatedObjectPopup !== 'undefined'? dismissAddRelatedObjectPopup: undefined;
 
 // Reassigning modified functions
-dismissChangeRelatedObjectPopup = (...args) => {
-    originalDismissChangeRelatedObjectPopup(...args);
-    dismissModal(args[0]?.name);
-};
+if(originalDismissChangeRelatedObjectPopup) {
+    dismissChangeRelatedObjectPopup = (...args) => {
+        originalDismissChangeRelatedObjectPopup(...args);
+        dismissModal(args[0]?.name);
+    };
+}
+if(originalDismissDeleteRelatedObjectPopup) {
+    dismissDeleteRelatedObjectPopup = (...args) => {
+        originalDismissDeleteRelatedObjectPopup(...args);
+        dismissModal(args[0]?.name);
+    };
+}
+if(originalDismissAddRelatedObjectPopup) {
+    dismissAddRelatedObjectPopup = (...args) => {
+        originalDismissAddRelatedObjectPopup(...args);
+        dismissModal(args[0]?.name);
+    };
+}
 
-dismissDeleteRelatedObjectPopup = (...args) => {
-    originalDismissDeleteRelatedObjectPopup(...args);
-    dismissModal(args[0]?.name);
-};
-
-dismissAddRelatedObjectPopup = (...args) => {
-    originalDismissAddRelatedObjectPopup(...args);
-    dismissModal(args[0]?.name);
-};
 
 // Patch window.open to open an iframe instead of a new window
 const originalWindowOpen = window.open;

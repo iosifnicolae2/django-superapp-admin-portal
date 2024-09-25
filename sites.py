@@ -7,13 +7,16 @@ from unfold.sites import UnfoldAdminSite
 
 from .forms import LoginForm
 
-from django_superapp.urls import main_admin_urlpatterns
+from django_superapp.urls import extend_superapp_admin_urlpatterns
 
 
 class SuperAppAdminSite(UnfoldAdminSite):
     login_form = LoginForm
 
     def get_urls(self):
+        main_admin_urlpatterns = []
+        from ... import apps as superapp_apps
+        extend_superapp_admin_urlpatterns(main_admin_urlpatterns, superapp_apps)
         urlpatterns = [
                           path(x["path"], self.custom_admin_page(x["view"]), name=x.get("name"))
                           for x in main_admin_urlpatterns

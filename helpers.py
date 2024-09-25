@@ -33,7 +33,7 @@ class SuperAppAdminReadonlyField(UnfoldAdminReadonlyField):
         )
 
         try:
-            f, attr, value = lookup_field(field, obj, model_admin)
+            f, attr, config = lookup_field(field, obj, model_admin)
         except (AttributeError, ValueError, ObjectDoesNotExist):
             return False
 
@@ -78,6 +78,9 @@ class SuperAppModelAdmin(AdminConfirmMixin, ModelAdmin, ImportExportModelAdmin):
         ]
 
         return tuple(readonly_fields) + tuple(custom_html_fields)
+
+    def get_list_display_links(self, request, list_display):
+        return self.list_display
 
     def get_actions_hidden(self, request: HttpRequest) -> List[UnfoldAction]:
         return self._filter_unfold_actions_by_permissions(
@@ -160,8 +163,8 @@ class BaseModel(models.Model):
             if isinstance(field, ChainedForeignKey):
                 computed_filters = {}
                 if field.dynamic_filters:
-                    for key, value in field.filters.items():
-                        computed_filters[key] = getattr(self, value).pk or None
+                    for key, config in field.filters.items():
+                        computed_filters[key] = getattr(self, config).pk or None
                 else:
                     computed_filters = field.filters
                 if not field.remote_field.model.objects.filter(**{
@@ -171,7 +174,7 @@ class BaseModel(models.Model):
                     raise ValidationError(
                         {
                             field.name: ValidationError(
-                                f"Invalid value for {field.name}",
+                                f"Invalid config for {field.name}",
                                 code='invalid'
                             )
                         }

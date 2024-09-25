@@ -21,7 +21,7 @@
                     </a>
                     {% else %}
                     {% if "action-toggle" in header.text and forloop.counter == 1 %}
-                    <label class="flex flex-row items-center gap-2 ml-3">
+                    <label class="flex flex-row items-center gap-2">
                         {{ header.text|capfirst }}
 
                     </label>
@@ -71,13 +71,14 @@
             </td>
         </tr>
         {% endif %}
-
-        <tr class="{% cycle '' 'bg-gray-50 dark:bg-white/[.02]' %} block border mb-3 rounded-md shadow-sm lg:table-row lg:border-none lg:mb-0 lg:shadow-none dark:border-gray-800">
+        <tr class="{% cycle '' 'bg-gray-50 dark:bg-white/[.02]' %} block border mb-3 rounded-md shadow-sm lg:table-row lg:border-none lg:mb-0 lg:shadow-none dark:border-gray-800 hover:bg-gray-100 cursor-pointer" @click="if(!$event.target.matches('input')) window.location.href = '{{ result.instance_pk }}/change'">
             {% for item in result %}
             {{ item }}
             {% endfor %}
             {% include 'unfold/helpers/actions_row.html' with actions=actions_row instance_pk=result.instance_pk %}
         </tr>
+
+
         {% endfor %}
         </tbody>
     </table>

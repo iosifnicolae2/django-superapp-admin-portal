@@ -71,7 +71,7 @@
             </td>
         </tr>
         {% endif %}
-        <tr class="{% cycle '' 'bg-gray-50 dark:bg-white/[.02]' %} block border mb-3 rounded-md shadow-sm lg:table-row lg:border-none lg:mb-0 lg:shadow-none dark:border-gray-800 hover:bg-gray-100 cursor-pointer" @click="if(!$event.target.matches('input') && !$event.target.matches('select') && !$event.target.closest('.select2')) window.location.href = '{{ result.instance_pk }}/change'">
+        <tr class="{% cycle '' 'bg-gray-50 dark:bg-white/[.02]' %} block border mb-3 rounded-md shadow-sm lg:table-row lg:border-none lg:mb-0 lg:shadow-none dark:border-gray-800 hover:bg-gray-100 cursor-pointer" @click="if(!$event.target.matches('input') && !$event.target.matches('select') && !$event.target.closest('.select2') && !$event.target.closest('a')) window.location.href = '{{ result.instance_pk }}/change'">
             {% for item in result %}
             {{ item }}
             {% endfor %}

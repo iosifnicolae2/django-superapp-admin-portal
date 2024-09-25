@@ -44,5 +44,19 @@ class SuperAppAdminSite(UnfoldAdminSite):
 
         return generator
 
+    def get_sidebar_list(self, request: HttpRequest) -> List[Dict[str, Any]]:
+        super_sidebar_list = super().get_sidebar_list(request)
+        # Do not display groups which are empty or the items permissions are false
+        sidebar_list = []
+        for sidebar in super_sidebar_list:
+            sidebar_items = sidebar.get("items", [])
+            sidebar_items = [item for item in sidebar_items if item.get("permission", lambda x: True)(request)]
+            if sidebar_items:
+                sidebar_list.append({
+                    **sidebar,
+                    "items": sidebar_items
+                })
+        return sidebar_list
+
 
 superapp_admin_site = SuperAppAdminSite()

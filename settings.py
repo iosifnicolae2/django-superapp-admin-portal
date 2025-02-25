@@ -25,9 +25,11 @@ def extend_superapp_settings(main_settings):
     ] + main_settings['INSTALLED_APPS'] + [
         "debug_toolbar",
         "import_export",
+        "django_cleanup.apps.CleanupConfig",
     ]
     main_settings.update({
-            'LOGIN_REDIRECT_URL': reverse_lazy("admin:index"),
+        'LOGIN_URL': "admin:login",
+        'LOGIN_REDIRECT_URL': reverse_lazy("admin:index"),
     })
 
     main_settings['UNFOLD'] = {
